@@ -36,7 +36,8 @@ conan_basic_setup()''')
 
     def build(self):
         cmake = CMake(self)
-        cmake.definitions["ENABLE_UNITY_BUILD"] = "ON"
+        # This causes internal compiler errors on gcc
+        # cmake.definitions["ENABLE_UNITY_BUILD"] = "ON"
         cmake.definitions["ENABLE_TESTING"] = "OFF"
         cmake.definitions["AUTORUN_UNIT_TESTS"] = "OFF"
         # TODO: some special if's will be needed for this
