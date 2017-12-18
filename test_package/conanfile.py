@@ -5,6 +5,12 @@ class AwssdkcppTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
 
+    def configure(self):
+        self.options["aws-sdk-cpp"].build_s3 = True
+        self.options["aws-sdk-cpp"].build_logs = True
+        self.options["aws-sdk-cpp"].build_monitoring = True
+        self.options["aws-sdk-cpp"].build_transfer = True
+
     def build(self):
         cmake = CMake(self)
         # Current dir is "test_package/build/<build_id>" and CMakeLists.txt is in "test_package"
