@@ -43,7 +43,6 @@ class AwssdkcppConan(ConanFile):
             "cognito_sync",
             "comprehend",
             "config",
-            "core",
             "cur",
             "datapipeline",
             "dax",
@@ -187,6 +186,11 @@ conan_basic_setup()''')
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = tools.collect_libs(self, folder="lib")
+        libs = list([])
+        for sdk in self.sdks:
+            if getattr(self.options, "build_" + sdk):
+                libs.append("aws-cpp-sdk-" + sdk)
+        libs.append("aws-cpp-sdk-core")
+        self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
         self.cpp_info.includedirs = ["include"]
