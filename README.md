@@ -1,5 +1,7 @@
 # conan-aws-sdk-cpp
 
+[![Build Status: Linux, OSX](https://travis-ci.org/SMelanko/conan-aws-sdk-cpp.svg?branch=master)](https://travis-ci.org/SMelanko/conan-aws-sdk-cpp)
+
 Conan Package for [aws-sdk-cpp](https://github.com/aws/aws-sdk-cpp)
 
 # How To Use
