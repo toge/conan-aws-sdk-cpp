@@ -1,9 +1,9 @@
 
 env:
    global:
-     - CONAN_REFERENCE: "aws-sdk-cpp/1.3.22"
-     - CONAN_USERNAME: "kmaragon"
-     - CONAN_LOGIN_USERNAME: "kmaragon"
+     - CONAN_REFERENCE: "aws-sdk-cpp/1.4.17"
+     - CONAN_USERNAME: "SMelanko"
+     - CONAN_LOGIN_USERNAME: "SMelanko"
      - CONAN_CHANNEL: "stable"
      
 linux: &linux
@@ -16,6 +16,7 @@ linux: &linux
 osx: &osx
    os: osx
    language: generic
+
 matrix:
    include:
 
