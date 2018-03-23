@@ -178,6 +178,7 @@ conan_basic_setup()''')
 
         cmake.definitions["MINIMIZE_SIZE"] = "ON" if self.options.min_size else "OFF"
         cmake.definitions["BUILD_SHARED_LIBS"] = "ON" if self.options.shared else "OFF"
+        cmake.definitions["FORCE_SHARED_CRT"] = "ON" if self.options.shared else "OFF"
          
         cmake.configure(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
         cmake.build()
