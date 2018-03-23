@@ -191,9 +191,10 @@ conan_basic_setup()''')
         libs = list([])
 
         if self.settings.os == "Windows":
-            libs.append("Wininet")
+            libs.append("bcrypt")
             libs.append("Userenv")
             libs.append("version")
+            libs.append("Wininet")
 
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
