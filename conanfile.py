@@ -194,6 +194,7 @@ conan_basic_setup()''')
             libs.append("bcrypt")
             libs.append("Userenv")
             libs.append("version")
+            libs.append("winhttp")
             libs.append("Wininet")
 
         for sdk in self.sdks:
