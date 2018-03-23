@@ -6,6 +6,7 @@ class AwssdkcppTestConan(ConanFile):
     generators = "cmake"
 
     def configure(self):
+        self.options["aws-sdk-cpp"].shared = False
         self.options["aws-sdk-cpp"].build_s3 = True
         self.options["aws-sdk-cpp"].build_logs = True
         self.options["aws-sdk-cpp"].build_monitoring = True
