@@ -6,6 +6,11 @@ class AwssdkcppTestConan(ConanFile):
     generators = "cmake"
 
     def configure(self):
+        if self.settings.compiler == "Visual Studio":
+            if self.settings.build_type == "Release":
+                self.settings.compiler.runtime = "MT"
+            else:
+                self.settings.compiler.runtime = "MTd"
         self.options["aws-sdk-cpp"].shared = False
         self.options["aws-sdk-cpp"].build_s3 = True
         self.options["aws-sdk-cpp"].build_logs = True
@@ -14,7 +19,7 @@ class AwssdkcppTestConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        # Current dir is "test_package/build/<build_id>" and CMakeLists.txt is in "test_package"
+        # Current dir is "test_package/build/<build_id>" and CMakeLists.txt is in "test_package".
         cmake.configure()
         cmake.build()
 
