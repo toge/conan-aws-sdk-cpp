@@ -189,10 +189,17 @@ conan_basic_setup()''')
 
     def package_info(self):
         libs = list([])
+
+        if self.settings.os == "Windows":
+            libs.append("Wininet")
+            libs.append("Userenv")
+            libs.append("version")
+
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
         libs.append("aws-cpp-sdk-core")
+
         self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
         self.cpp_info.includedirs = ["include"]
