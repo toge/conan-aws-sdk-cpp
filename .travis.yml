@@ -43,6 +43,9 @@ matrix:
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
+before_install:
+  - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+
 install:
   - chmod +x .travis/install.sh
   - ./.travis/install.sh
