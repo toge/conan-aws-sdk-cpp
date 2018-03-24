@@ -1,5 +1,4 @@
 # conan-aws-sdk-cpp
-=====================================
 
 [Conan.io](https://conan.io) package for the [aws-sdk-cpp](https://github.com/aws/aws-sdk-cpp)
 
