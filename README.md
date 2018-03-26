@@ -38,4 +38,26 @@ Project setup installs the libraries (and all needed dependencies) and generates
 the files *conanbuildinfo.txt* and *conanbuildinfo.cmake*
 with all the paths and variables that you need to link with your dependencies.
 
-Follow the Conan getting started: http://docs.conan.io
+Follow the Conan getting started: http://docs.conan.io.
+
+## Publish The Package
+
+The example below shows the commands used to publish to conan repository.
+
+## Add Remote
+
+    $ conan remote add smela https://api.bintray.com/conan/smela/conan
+
+## Build
+
+Builds a binary package for recipe (conanfile.py) located in current dir. 
+For more info please check [conan create](http://docs.conan.io/en/latest/reference/commands/creator/create.html#conan-create).
+
+    $ conan create . smela/testing
+
+## Upload
+
+Uploads a recipe and binary packages to a remote. 
+For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
+
+    $ conan upload aws-sdk-cpp/1.4.17@smela/testing --all -r smela
