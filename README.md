@@ -44,18 +44,18 @@ Follow the Conan getting started: http://docs.conan.io.
 
 The example below shows the commands used to publish to conan repository.
 
-## Add Remote
+### Add Remote
 
     $ conan remote add smela https://api.bintray.com/conan/smela/conan
 
-## Build
+### Build
 
 Builds a binary package for recipe (conanfile.py) located in current dir. 
 For more info please check [conan create](http://docs.conan.io/en/latest/reference/commands/creator/create.html#conan-create).
 
     $ conan create . smela/testing
 
-## Upload
+### Upload
 
 Uploads a recipe and binary packages to a remote. 
 For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
