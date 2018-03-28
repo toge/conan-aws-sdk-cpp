@@ -12,7 +12,7 @@
 
 ### Basic setup
 
-    $ conan install aws-sdk-cpp/1.4.17@smela/testing
+    $ conan install aws-sdk-cpp/1.4.23@smela/testing
 
 ### Project setup
 
@@ -22,7 +22,7 @@ from conans import ConanFile, CMake
 class AppConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     
-    requires = "aws-sdk-cpp/1.4.17@smela/testing"
+    requires = "aws-sdk-cpp/1.4.23@smela/testing"
     
     default_options = "aws-sdk-cpp:shared=False", \
         "aws-sdk-cpp:build_s3=True"
@@ -60,4 +60,4 @@ For more info please check [conan create](http://docs.conan.io/en/latest/referen
 Uploads a recipe and binary packages to a remote. 
 For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
 
-    $ conan upload aws-sdk-cpp/1.4.17@smela/testing --all -r smela
+    $ conan upload aws-sdk-cpp/1.4.23@smela/testing --all -r smela

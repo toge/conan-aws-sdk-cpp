@@ -5,7 +5,7 @@ environment:
     PYTHON_VERSION: "2.7.8"
     PYTHON_ARCH: "32"
 
-    CONAN_REFERENCE: "aws-sdk-cpp/1.4.17"
+    CONAN_REFERENCE: "aws-sdk-cpp/1.4.23"
     CONAN_USERNAME: "smela"
     CONAN_LOGIN_USERNAME: "smela"
     CONAN_CHANNEL: "testing"
