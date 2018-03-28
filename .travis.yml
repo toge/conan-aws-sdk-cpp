@@ -5,7 +5,7 @@ env:
      - CONAN_USERNAME: "smela"
      - CONAN_LOGIN_USERNAME: "smela"
      - CONAN_CHANNEL: "testing"
-     
+
 linux: &linux
    os: linux
    sudo: required
