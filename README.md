@@ -12,7 +12,9 @@
 
 ### Basic setup
 
-    $ conan install aws-sdk-cpp/1.6.43@smela/testing
+```bash
+$ conan install aws-sdk-cpp/1.6.43@smela/stable
+```
 
 ### Project setup
 
@@ -21,20 +23,22 @@ from conans import ConanFile, CMake
 
 class AppConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    
-    requires = "aws-sdk-cpp/1.6.43@smela/testing"
-    
+
+    requires = "aws-sdk-cpp/1.6.43@smela/stable"
+
     default_options = "aws-sdk-cpp:shared=False", \
         "aws-sdk-cpp:build_s3=True"
-        
+
     generators = "cmake"
 ```
 
 Complete the installation of requirements for your project running:
 
-    conan install .
+```bash
+conan install .
+```
 
-Project setup installs the libraries (and all needed dependencies) and generates
+Project setup installs the libraries (with all needed dependencies) and generates
 the files *conanbuildinfo.txt* and *conanbuildinfo.cmake*
 with all the paths and variables that you need to link with your dependencies.
 
@@ -46,18 +50,24 @@ The example below shows the commands used to publish to conan repository.
 
 ### Add Remote
 
-    $ conan remote add smela https://api.bintray.com/conan/smela/conan
+```bash
+$ conan remote add smela https://api.bintray.com/conan/smela/conan
+```
 
 ### Build
 
 Builds a binary package for recipe (conanfile.py) located in current dir. 
 For more info please check [conan create](http://docs.conan.io/en/latest/reference/commands/creator/create.html#conan-create).
 
-    $ conan create . smela/testing
+```bash
+$ conan create . smela/stable
+```
 
 ### Upload
 
 Uploads a recipe and binary packages to a remote. 
 For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
 
-    $ conan upload aws-sdk-cpp/1.6.43@smela/testing --all -r smela
+```bash
+$ conan upload aws-sdk-cpp/1.6.43@smela/stable --all -r smela
+```
