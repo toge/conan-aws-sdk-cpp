@@ -4,7 +4,7 @@ env:
      - CONAN_REFERENCE: "aws-sdk-cpp/1.6.43"
      - CONAN_USERNAME: "smela"
      - CONAN_LOGIN_USERNAME: "smela"
-     - CONAN_CHANNEL: "testing"
+     - CONAN_CHANNEL: "stable"
 
 linux: &linux
    os: linux
@@ -32,12 +32,12 @@ matrix:
         env: CONAN_GCC_VERSIONS=8 CONAN_DOCKER_IMAGE=lasote/conangcc8
 
       - <<: *osx
-        osx_image: xcode9.4
-        env: CONAN_APPLE_CLANG_VERSIONS=9.1
+        osx_image: xcode9
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
       - <<: *osx
-        osx_image: xcode10.1
-        env: CONAN_APPLE_CLANG_VERSIONS=10.0
+        osx_image: xcode9.3
+        env: CONAN_APPLE_CLANG_VERSIONS=9.1
 
 install:
   - chmod +x .travis/install.sh
