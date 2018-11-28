@@ -8,7 +8,7 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.3.22"
+    version = "1.7.7"
     license = "Apache 2.0"
     url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
@@ -18,6 +18,7 @@ class AwssdkcppConan(ConanFile):
     sdks = ("access_management",
             "acm",
             "alexaforbusiness"
+            "amplify"
             "apigateway",
             "application_autoscaling",
             "appstream",
@@ -100,6 +101,7 @@ class AwssdkcppConan(ConanFile):
             "monitoring",
             "mq",
             "mturk_requester",
+            "neptune",
             "opsworks",
             "opsworkscm",
             "organizations",
@@ -111,6 +113,7 @@ class AwssdkcppConan(ConanFile):
             "redshift",
             "recognition",
             "resource_groups",
+            "robomaker"
             "route53",
             "route53domains",
             "s3",
@@ -148,7 +151,7 @@ class AwssdkcppConan(ConanFile):
     def configure(self):
         if self.settings.os != "Windows":
             if self.settings.os != "Macos":
-                self.requires("OpenSSL/1.0.2m@conan/stable")
+                self.requires("OpenSSL/1.0.2o@conan/stable")
             self.requires("libcurl/7.56.1@bincrafters/stable")
            
 
@@ -183,7 +186,7 @@ conan_basic_setup()''')
 
     def package(self):
         cmake = CMake(self)
-        cmake.install()
+        cmake.install(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
 
     def package_info(self):
         libs = list([])
