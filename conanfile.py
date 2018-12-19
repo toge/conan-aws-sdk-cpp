@@ -192,6 +192,11 @@ conan_basic_setup()''')
     def package_info(self):
         libs = list([])
 
+        for sdk in self.sdks:
+            if getattr(self.options, "build_" + sdk):
+                libs.append("aws-cpp-sdk-" + sdk)
+        libs.append("aws-cpp-sdk-core")
+
         if self.settings.os == "Windows":
             libs.append("winhttp")
             libs.append("wininet")
@@ -199,11 +204,6 @@ conan_basic_setup()''')
             libs.append("userenv")
             libs.append("version")
             libs.append("ws2_32")
-
-        for sdk in self.sdks:
-            if getattr(self.options, "build_" + sdk):
-                libs.append("aws-cpp-sdk-" + sdk)
-        libs.append("aws-cpp-sdk-core")
 
         self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
