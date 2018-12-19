@@ -1,9 +1,9 @@
 
 env:
    global:
-     - CONAN_REFERENCE: "aws-sdk-cpp/1.6.43"
-     - CONAN_USERNAME: "smela"
-     - CONAN_LOGIN_USERNAME: "smela"
+     - CONAN_REFERENCE: "aws-sdk-cpp/1.7.7"
+     - CONAN_USERNAME: "kmaragon"
+     - CONAN_LOGIN_USERNAME: "kmaragon"
      - CONAN_CHANNEL: "stable"
 
 linux: &linux

@@ -10,7 +10,7 @@ class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
     version = "1.7.7"
     license = "Apache 2.0"
-    url = "https://github.com/SMelanko/conan-aws-sdk-cpp"
+    url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
     short_paths = True
     settings = "os", "compiler", "build_type", "arch"
