@@ -8,10 +8,11 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.3.22"
+    version = "1.6.43"
     license = "Apache 2.0"
-    url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
+    url = "https://github.com/SMelanko/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
+    short_paths = True
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
     requires = "zlib/1.2.11@conan/stable"
@@ -150,7 +151,6 @@ class AwssdkcppConan(ConanFile):
             if self.settings.os != "Macos":
                 self.requires("OpenSSL/[>=1.0.2m]@conan/stable")
             self.requires("libcurl/7.56.1@bincrafters/stable")
-           
 
     def source(self):
         tools.download("https://github.com/aws/aws-sdk-cpp/archive/%s.tar.gz" % self.version, "aws-sdk-cpp.tar.gz")
@@ -177,7 +177,8 @@ conan_basic_setup()''')
 
         cmake.definitions["MINIMIZE_SIZE"] = "ON" if self.options.min_size else "OFF"
         cmake.definitions["BUILD_SHARED_LIBS"] = "ON" if self.options.shared else "OFF"
-         
+        cmake.definitions["FORCE_SHARED_CRT"] = "ON" if self.options.shared else "OFF"
+
         cmake.configure(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
         cmake.build()
 
@@ -187,10 +188,20 @@ conan_basic_setup()''')
 
     def package_info(self):
         libs = list([])
+
+        if self.settings.os == "Windows":
+            libs.append("winhttp")
+            libs.append("wininet")
+            libs.append("bcrypt")
+            libs.append("userenv")
+            libs.append("version")
+            libs.append("ws2_32")
+
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
         libs.append("aws-cpp-sdk-core")
+
         self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
         self.cpp_info.includedirs = ["include"]
