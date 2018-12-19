@@ -153,7 +153,7 @@ class AwssdkcppConan(ConanFile):
         if self.settings.os != "Windows":
             if self.settings.os != "Macos":
                 self.requires("OpenSSL/[>=1.0.2m]@conan/stable")
-            self.requires("libcurl/7.56.1@bincrafters/stable")
+            self.requires("libcurl/[>=7.61.1]@bincrafters/stable")
 
     def source(self):
         tools.download("https://github.com/aws/aws-sdk-cpp/archive/%s.tar.gz" % self.version, "aws-sdk-cpp.tar.gz")
