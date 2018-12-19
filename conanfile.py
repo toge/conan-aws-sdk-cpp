@@ -186,8 +186,8 @@ conan_basic_setup()''')
         cmake.build()
 
     def package(self):
-        cmake = CMake(self)
-        cmake.install(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
+        cmake = self.configure_cmake()
+        cmake.install()
 
     def package_info(self):
         libs = list([])
