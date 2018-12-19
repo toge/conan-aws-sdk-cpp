@@ -145,10 +145,10 @@ class AwssdkcppConan(ConanFile):
         })
     default_options = ("shared=False","min_size=False") + tuple("build_" + x + "=False" for x in sdks)
 
-    def configure(self):
+    def requirements(self):
         if self.settings.os != "Windows":
             if self.settings.os != "Macos":
-                self.requires("OpenSSL/1.0.2m@conan/stable")
+                self.requires("OpenSSL/[>=1.0.2m]@conan/stable")
             self.requires("libcurl/7.56.1@bincrafters/stable")
            
 
