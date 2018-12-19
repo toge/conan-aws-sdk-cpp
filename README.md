@@ -6,7 +6,7 @@
 
 | Bintray | Windows | Linux & macOS |
 |:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/kmaragon/conan/aws-sdk-cpp%3Akmaragon/images/download.svg) ](https://bintray.com/kmaragon/conan/aws-sdk-cpp%3Akmaragon/_latestVersion)|[![Build status: Windows](https://ci.appveyor.com/api/projects/status/h2vsu09qrs0v4wew?svg=true)](https://ci.appveyor.com/project/SMelanko/conan-aws-sdk-cpp)|[![Build Status: Linux, OSX](https://travis-ci.org/SMelanko/conan-aws-sdk-cpp.svg?branch=master)](https://travis-ci.org/SMelanko/conan-aws-sdk-cpp)
+|[![Download](https://api.bintray.com/packages/kmaragon/conan/aws-sdk-cpp%3Akmaragon/images/download.svg) ](https://bintray.com/kmaragon/conan/aws-sdk-cpp%3Akmaragon/_latestVersion)|[![Build status: Windows](https://ci.appveyor.com/api/projects/status/h2vsu09qrs0v4wew?svg=true)](https://ci.appveyor.com/project/kmaragon/conan-aws-sdk-cpp)|[![Build Status: Linux, OSX](https://travis-ci.org/kmaragon/conan-aws-sdk-cpp.svg?branch=master)](https://travis-ci.org/SMelanko/conan-aws-sdk-cpp)
 
 ## Reuse The Packages
 
