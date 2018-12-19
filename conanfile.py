@@ -8,7 +8,7 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.6.43"
+    version = "1.7.7"
     license = "Apache 2.0"
     url = "https://github.com/SMelanko/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
@@ -19,6 +19,7 @@ class AwssdkcppConan(ConanFile):
     sdks = ("access_management",
             "acm",
             "alexaforbusiness"
+            "amplify"
             "apigateway",
             "application_autoscaling",
             "appstream",
@@ -101,6 +102,7 @@ class AwssdkcppConan(ConanFile):
             "monitoring",
             "mq",
             "mturk_requester",
+            "neptune",
             "opsworks",
             "opsworkscm",
             "organizations",
@@ -112,6 +114,7 @@ class AwssdkcppConan(ConanFile):
             "redshift",
             "recognition",
             "resource_groups",
+            "robomaker"
             "route53",
             "route53domains",
             "s3",
@@ -184,7 +187,7 @@ conan_basic_setup()''')
 
     def package(self):
         cmake = CMake(self)
-        cmake.install()
+        cmake.install(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
 
     def package_info(self):
         libs = list([])
