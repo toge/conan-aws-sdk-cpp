@@ -69,7 +69,7 @@ Uploads a recipe and binary packages to a remote.
 For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
 
 ```bash
-$ conan upload aws-sdk-cpp/1.7.7@kmaragon/stable --all -r smela
+$ conan upload aws-sdk-cpp/1.7.7@kmaragon/stable --all -r kmaragon 
 ```
 
 Special thanks to @SMelanko for README and contributions beyond just gcc + linux
