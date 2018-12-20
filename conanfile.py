@@ -192,9 +192,6 @@ conan_basic_setup()''')
     def package_info(self):
         libs = list([])
 
-        if self.settings.os == "Linux" and self.settings.compiler == "clang":
-            libs.append("-stdlib=libstdc++")
-
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
@@ -207,6 +204,10 @@ conan_basic_setup()''')
             libs.append("userenv")
             libs.append("version")
             libs.append("ws2_32")
+
+        if self.settings.os == "Linux" and self.settings.compiler == "clang":
+            libs.append("atomic")
+            libs.append("-stdlib=libstdc++")
 
         self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
