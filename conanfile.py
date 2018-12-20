@@ -192,6 +192,9 @@ conan_basic_setup()''')
     def package_info(self):
         libs = list([])
 
+        if self.settings.compiler == "clang":
+            libs.append("-stdlib=libstdc++")
+
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
