@@ -192,7 +192,7 @@ conan_basic_setup()''')
     def package_info(self):
         libs = list([])
 
-        if self.settings.compiler == "clang":
+        if self.settings.os == "Linux" and self.settings.compiler == "clang":
             libs.append("-stdlib=libstdc++")
 
         for sdk in self.sdks:
