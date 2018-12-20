@@ -182,12 +182,12 @@ conan_basic_setup()''')
         cmake.definitions["BUILD_SHARED_LIBS"] = "ON" if self.options.shared else "OFF"
         cmake.definitions["FORCE_SHARED_CRT"] = "ON" if self.options.shared else "OFF"
 
-        cmake.configure(source_dir="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version))
+        cmake.configure(source_folder="%s/aws-sdk-cpp-%s" % (self.source_folder, self.version), build_folder=self.build_folder)
         cmake.build()
 
     def package(self):
-        cmake = self.configure_cmake()
-        cmake.install()
+        cmake = CMake(self)
+        cmake.install(build_folder=self.build_folder)
 
     def package_info(self):
         libs = list([])
