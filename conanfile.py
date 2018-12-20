@@ -187,7 +187,7 @@ conan_basic_setup()''')
 
     def package(self):
         cmake = CMake(self)
-        cmake.install(build_folder=self.build_folder)
+        cmake.install(build_dir=self.build_folder)
 
     def package_info(self):
         libs = list([])
