@@ -9,6 +9,10 @@ environment:
     CONAN_USERNAME: "kmaragon"
     CONAN_LOGIN_USERNAME: "kmaragon"
     CONAN_CHANNEL: "stable"
+    CONAN_UPLOAD: "https://api.bintray.com/conan/kmaragon/conan"
+    CONAN_STABLE_BRANCH_PATTERN: "release/*"
+    CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+
 
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
