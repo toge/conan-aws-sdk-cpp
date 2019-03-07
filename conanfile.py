@@ -8,7 +8,7 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.7.7"
+    version = "1.7.64"
     license = "Apache 2.0"
     url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
@@ -28,6 +28,7 @@ class AwssdkcppConan(ConanFile):
             "autoscaling",
             "batch",
             "budgets",
+            "chime",
             "cloud9",
             "clouddirectory",
             "cloudformation",
@@ -51,13 +52,16 @@ class AwssdkcppConan(ConanFile):
             "devicefarm",
             "directconnect",
             "discovery",
+            "dlm",
             "dms",
+            "docdb",
             "ds",
             "dynamodb",
             "dynamodbstreams",
             "ec2",
             "ecr",
             "ecs",
+            "eks",
             "elasticache",
             "elasticbeanstalk",
             "elasticfilesystem",
@@ -69,8 +73,11 @@ class AwssdkcppConan(ConanFile):
             "es",
             "events",
             "firehose",
+            "fms",
+            "fsx",
             "gamelift",
             "glacier",
+            "globalaccelerator",
             "glue",
             "greengrass",
             "guardduty",
@@ -82,6 +89,7 @@ class AwssdkcppConan(ConanFile):
             "iot_data",
             "iot_jobs_data",
             "iot",
+            "kafka",
             "kinesis",
             "kinesisanalytics",
             "kinesisvideo",
@@ -91,12 +99,14 @@ class AwssdkcppConan(ConanFile):
             "lightsail",
             "logs",
             "machinelearnings",
+            "macie",
             "marketplace_entitlement",
             "marketplacecommerceanalytics",
             "mediaconvert",
             "medialive",
             "mediapackage",
             "mediastore",
+            "mediatailor",
             "meteringmarketplace",
             "mobileanalytics",
             "monitoring",
@@ -110,6 +120,8 @@ class AwssdkcppConan(ConanFile):
             "polly",
             "pricing",
             "queues",
+            "quicksight",
+            "ram",
             "rds",
             "redshift",
             "recognition",
@@ -124,6 +136,7 @@ class AwssdkcppConan(ConanFile):
             "servicecatalog",
             "servicediscovery",
             "shield",
+            "signer",
             "sms",
             "snowball",
             "sns",
@@ -135,10 +148,13 @@ class AwssdkcppConan(ConanFile):
             "support",
             "swf",
             "text_to_speech",
+            "texttract",
+            "transcribe",
             "transfer",
             "translate",
             "waf",
             "workdocs",
+            "worklink",
             "workmail",
             "workspaces",
             "xray"
@@ -195,7 +211,7 @@ conan_basic_setup()''')
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
-        libs.append("aws-cpp-sdk-core")
+        libs.extend(["aws-cpp-sdk-core", "aws-c-event-stream", "aws-c-common", "aws-checksums"])
 
         if self.settings.os == "Windows":
             libs.append("winhttp")
