@@ -16,7 +16,7 @@ class AwssdkcppConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
     requires = "zlib/1.2.11@conan/stable"
-    exports_sources = ["patch-cmakelists.patch"]
+    exports_sources = ["patch-cmakelists.patch", "patch-c-libs.patch"]
     sdks = ("access_management",
             "acm",
             "alexaforbusiness"
@@ -179,6 +179,7 @@ class AwssdkcppConan(ConanFile):
 
         # patch the shipped CMakeLists.txt which builds stuff before even declaring a project
         tools.patch(patch_file=os.path.join(self.source_folder, "patch-cmakelists.patch"))
+        tools.patch(patch_file=os.path.join(self.source_folder, "patch-c-libs.patch"))
 
         # This small hack might be useful to guarantee proper /MT /MD linkage in MSVC
         # if the packaged project doesn't have variables to set it properly
