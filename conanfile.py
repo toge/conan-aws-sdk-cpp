@@ -186,8 +186,6 @@ class AwssdkcppConan(ConanFile):
         tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, "project(\"aws-cpp-sdk-all\" VERSION \"${PROJECT_VERSION}\" LANGUAGES CXX)", '''project(aws-cpp-sdk-all VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} ${CONAN_C_FLAGS})
-set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${CONAN_CXX_FLAGS})
 ''')
        
     def build(self):
@@ -229,9 +227,10 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} ${CONAN_CXX_FLAGS})
             libs.append("version")
             libs.append("ws2_32")
 
-        if self.settings.os == "Linux" and self.settings.compiler == "clang":
+        if self.settings.os == "Linux":
             libs.append("atomic")
-            libs.append("-stdlib=libstdc++")
+            if self.settings.compiler == "clang":
+                libs.append("-stdlib=libstdc++")
 
         self.cpp_info.libs = libs
         self.cpp_info.libdirs = ["lib"]
