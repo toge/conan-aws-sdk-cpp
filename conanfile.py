@@ -185,9 +185,9 @@ class AwssdkcppConan(ConanFile):
         tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, "project(\"aws-cpp-sdk-all\" VERSION \"${PROJECT_VERSION}\" LANGUAGES CXX)", '''project(aws-cpp-sdk-all VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-conan_define_targets()
-
-message("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}, CMAKE_C_FLAGS=${CMAKE_C_FLAGS}"''')
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CONAN_C_FLAGS})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CONAN_CXX_FLAGS})
+''')
        
     def build(self):
         cmake = CMake(self)
