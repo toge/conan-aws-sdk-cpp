@@ -184,7 +184,8 @@ class AwssdkcppConan(ConanFile):
         # if the packaged project doesn't have variables to set it properly
         tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, "project(\"aws-cpp-sdk-all\" VERSION \"${PROJECT_VERSION}\" LANGUAGES CXX)", '''project(aws-cpp-sdk-all VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()''')
+conan_basic_setup()
+conan_define_targets()''')
        
     def build(self):
         cmake = CMake(self)
