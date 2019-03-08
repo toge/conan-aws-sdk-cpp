@@ -187,6 +187,7 @@ class AwssdkcppConan(ConanFile):
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 ''')
+        tools.replace_in_file("aws-sdk-cpp-%s/third-party/CMakeLists.txt" % self.version, "f5383755e934745811d777a8e6c6866791b4302e", "v0.3.3")
        
     def build(self):
         cmake = CMake(self)
