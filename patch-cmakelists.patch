@@ -1,6 +1,5 @@
-diff -Naur aws-sdk-cpp-1.7.64/CMakeLists.txt aws-sdk-cpp-1.7.64.updated/CMakeLists.txt
---- aws-sdk-cpp-1.7.64/CMakeLists.txt	2019-03-06 12:39:37.000000000 -0800
-+++ aws-sdk-cpp-1.7.64.updated/CMakeLists.txt	2019-03-07 17:28:43.884705897 -0800
+--- aws-sdk-cpp-1.7.64.orig/CMakeLists.txt	2019-03-07 22:21:30.570629464 -0800
++++ aws-sdk-cpp-1.7.64/CMakeLists.txt	2019-03-07 22:22:29.358469113 -0800
 @@ -27,6 +27,9 @@
      cmake_policy(SET CMP0056 NEW)
  endif()
@@ -11,7 +10,15 @@ diff -Naur aws-sdk-cpp-1.7.64/CMakeLists.txt aws-sdk-cpp-1.7.64.updated/CMakeLis
  # 3.0 or higher is strongly suggested; build settings (target_compile_options/etc...) sometimes do not get propagated properly under certain conditions prior to this version
  # Making this a hard requirement is potentially disruptive to existing customers who aren't affected by the bad behavior though, so just warn for now
  if(CMAKE_MAJOR_VERSION LESS 3)
-@@ -183,9 +186,6 @@
+@@ -165,6 +168,7 @@
+             -DBUILD_SHARED_LIBS=${BUILD_SHARED_LIBS}
+             -DCMAKE_INSTALL_PREFIX=${AWS_DEPS_INSTALL_DIR}
+             -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_CURRENT_BINARY_DIR}/bin
++            -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS}
+             ${CMAKE_CURRENT_SOURCE_DIR}/third-party
+             WORKING_DIRECTORY ${AWS_DEPS_BUILD_DIR}
+             RESULT_VARIABLE BUILD_3P_EXIT_CODE)
+@@ -183,9 +187,6 @@
      list(APPEND CMAKE_PREFIX_PATH "${AWS_DEPS_INSTALL_DIR}")
  endif()
  
