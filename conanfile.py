@@ -200,13 +200,6 @@ conan_basic_setup()
         cmake.definitions["ENABLE_TESTING"] = "OFF"
         cmake.definitions["AUTORUN_UNIT_TESTS"] = "OFF"
 
-        # conan will replace these as necessary
-        if self.settings.os == "Windows":
-            cmake.definitions["CMAKE_C_FLAGS_RELEASE"] = "/MD"
-            cmake.definitions["CMAKE_CXX_FLAGS_RELEASE"] = "/MD"
-            cmake.definitions["CMAKE_C_FLAGS_DEBUG"] = "/MDd"
-            cmake.definitions["CMAKE_CXX_FLAGS_DEBUG"] = "/MDd"
-
         cmake.definitions["MINIMIZE_SIZE"] = "ON" if self.options.min_size else "OFF"
         cmake.definitions["BUILD_SHARED_LIBS"] = "ON" if self.options.shared else "OFF"
         cmake.definitions["FORCE_SHARED_CRT"] = "ON" if self.options.shared else "OFF"
