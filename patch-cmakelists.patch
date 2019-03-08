@@ -1,0 +1,23 @@
+diff -Naur aws-sdk-cpp-1.7.64/CMakeLists.txt aws-sdk-cpp-1.7.64.updated/CMakeLists.txt
+--- aws-sdk-cpp-1.7.64/CMakeLists.txt	2019-03-06 12:39:37.000000000 -0800
++++ aws-sdk-cpp-1.7.64.updated/CMakeLists.txt	2019-03-07 17:28:43.884705897 -0800
+@@ -27,6 +27,9 @@
+     cmake_policy(SET CMP0056 NEW)
+ endif()
+ 
++# build the sdk targets
++project("aws-cpp-sdk-all" VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
++
+ # 3.0 or higher is strongly suggested; build settings (target_compile_options/etc...) sometimes do not get propagated properly under certain conditions prior to this version
+ # Making this a hard requirement is potentially disruptive to existing customers who aren't affected by the bad behavior though, so just warn for now
+ if(CMAKE_MAJOR_VERSION LESS 3)
+@@ -183,9 +186,6 @@
+     list(APPEND CMAKE_PREFIX_PATH "${AWS_DEPS_INSTALL_DIR}")
+ endif()
+ 
+-# build the sdk targets
+-project("aws-cpp-sdk-all" VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
+-
+ # http client, encryption, zlib
+ include(external_dependencies)
+ 

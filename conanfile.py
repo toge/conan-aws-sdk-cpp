@@ -16,7 +16,7 @@ class AwssdkcppConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
     requires = "zlib/1.2.11@conan/stable"
-    exports_sources = ["patch-c-libs.patch"]
+    exports_sources = ["patch-cmakelists.patch"]
     sdks = ("access_management",
             "acm",
             "alexaforbusiness"
@@ -177,14 +177,15 @@ class AwssdkcppConan(ConanFile):
         tools.unzip("aws-sdk-cpp.tar.gz")
         os.unlink("aws-sdk-cpp.tar.gz")
 
-        tools.patch(patch_file=os.path.join(self.source_folder, "patch-c-libs.patch"))
+        # patch the shipped CMakeLists.txt which builds stuff before even declaring a project
+        tools.patch(patch_file=os.path.join(self.source_folder, "patch-cmakelists.patch"))
 
         # This small hack might be useful to guarantee proper /MT /MD linkage in MSVC
         # if the packaged project doesn't have variables to set it properly
-        tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, '''list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")''', '''list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+        tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, "project(\"aws-cpp-sdk-all\" VERSION \"${PROJECT_VERSION}\" LANGUAGES CXX)", '''project(aws-cpp-sdk-all VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()''')
-
+       
     def build(self):
         cmake = CMake(self)
         build_only = list([])
