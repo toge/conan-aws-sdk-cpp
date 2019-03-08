@@ -187,6 +187,7 @@ conan_basic_setup()''')
 
     def build(self):
         cmake = CMake(self)
+        cmake.verbose = 1
         build_only = list([])
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
