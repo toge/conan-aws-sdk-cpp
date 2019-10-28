@@ -8,7 +8,7 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.7.64"
+    version = "1.7.212"
     license = "Apache 2.0"
     url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
@@ -169,7 +169,7 @@ class AwssdkcppConan(ConanFile):
     def requirements(self):
         if self.settings.os != "Windows":
             if self.settings.os != "Macos":
-                self.requires("OpenSSL/[>=1.0.2m,<1.1.0]@conan/stable")
+                self.requires("OpenSSL/[>=1.1.0]@conan/stable")
             self.requires("libcurl/[>=7.61.1]@bincrafters/stable")
 
     def source(self):
