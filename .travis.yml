@@ -1,7 +1,7 @@
 
 env:
    global:
-     - CONAN_REFERENCE: "aws-sdk-cpp/1.7.64"
+     - CONAN_REFERENCE: "aws-sdk-cpp/1.7.212"
      - CONAN_USERNAME: "kmaragon"
      - CONAN_LOGIN_USERNAME: "kmaragon"
      - CONAN_CHANNEL: "stable"
@@ -23,10 +23,10 @@ matrix:
    include:
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
 
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
+        env: CONAN_GCC_VERSIONS=9 CONAN_DOCKER_IMAGE=lasote/conangcc8
 
       - <<: *linux 
         env: CONAN_CLANG_VERSIONS=6.0 CONAN_DOCKER_IMAGE=lasote/conanclang60

@@ -15,7 +15,7 @@ class AwssdkcppConan(ConanFile):
     short_paths = True
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-    requires = "zlib/1.2.11@conan/stable"
+    requires = "zlib/1.2.11"
     exports_sources = ["patch-cmakelists.patch", "patch-c-libs.patch"]
     sdks = ("access_management",
             "acm",
@@ -169,8 +169,8 @@ class AwssdkcppConan(ConanFile):
     def requirements(self):
         if self.settings.os != "Windows":
             if self.settings.os != "Macos":
-                self.requires("OpenSSL/[>=1.1.0]@conan/stable")
-            self.requires("libcurl/[>=7.61.1]@bincrafters/stable")
+                self.requires("openssl/1.1.1d")
+            self.requires("libcurl/7.66.0@bincrafters/stable")
 
     def source(self):
         tools.download("https://github.com/aws/aws-sdk-cpp/archive/%s.tar.gz" % self.version, "aws-sdk-cpp.tar.gz")
