@@ -1,6 +1,7 @@
 
 env:
    global:
+     - CONAN_ARCHS: "x86_64"
      - CONAN_REFERENCE: "aws-sdk-cpp/1.7.212"
      - CONAN_USERNAME: "kmaragon"
      - CONAN_LOGIN_USERNAME: "kmaragon"
