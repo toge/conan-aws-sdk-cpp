@@ -8,13 +8,13 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.7.212"
+    version = "1.8.129"
     license = "Apache 2.0"
     url = "https://github.com/kmaragon/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
     short_paths = True
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    generators = "cmake_find_package_multi", "cmake"
     requires = "zlib/1.2.11"
     exports_sources = ["patch-cmakelists.patch", "patch-c-libs.patch"]
     sdks = ("access_management",
@@ -171,6 +171,7 @@ class AwssdkcppConan(ConanFile):
             if self.settings.os != "Macos":
                 self.requires("openssl/1.1.1d")
             self.requires("libcurl/7.66.0@bincrafters/stable")
+        self.requires("aws-c-event-stream/[>= 0.1.5]")
 
     def source(self):
         tools.download("https://github.com/aws/aws-sdk-cpp/archive/%s.tar.gz" % self.version, "aws-sdk-cpp.tar.gz")
@@ -178,11 +179,11 @@ class AwssdkcppConan(ConanFile):
         os.unlink("aws-sdk-cpp.tar.gz")
 
         # patch the shipped CMakeLists.txt which builds stuff before even declaring a project
-        tools.patch(patch_file=os.path.join(self.source_folder, "patch-cmakelists.patch"))
-        tools.patch(patch_file=os.path.join(self.source_folder, "patch-c-libs.patch"))
+        # tools.patch(patch_file=os.path.join(self.source_folder, "patch-cmakelists.patch"))
+        # tools.patch(patch_file=os.path.join(self.source_folder, "patch-c-libs.patch"))
 
         # This small hack might be useful to guarantee proper /MT /MD linkage in MSVC
-        # if the packaged project doesn't have variables to set it properly
+        # if the packaged projewct doesn't have variables to set it properly
         tools.replace_in_file("aws-sdk-cpp-%s/CMakeLists.txt" % self.version, "project(\"aws-cpp-sdk-all\" VERSION \"${PROJECT_VERSION}\" LANGUAGES CXX)", '''project(aws-cpp-sdk-all VERSION "${PROJECT_VERSION}" LANGUAGES CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -195,6 +196,7 @@ conan_basic_setup()
             if getattr(self.options, "build_" + sdk):
                 build_only.append(sdk)
 
+        # cmake.definitions["BUILD_DEPS"] = False
         cmake.definitions["BUILD_ONLY"] = ";".join(build_only)
         cmake.definitions["ENABLE_UNITY_BUILD"] = "ON"
         cmake.definitions["ENABLE_TESTING"] = "OFF"
@@ -211,13 +213,27 @@ conan_basic_setup()
         cmake = CMake(self)
         cmake.install(build_dir=self.build_folder)
 
+        lib_path = os.path.join(self.package_folder, "lib")
+        lib64_path = os.path.join(self.package_folder, "lib64")
+        if os.path.exists(lib64_path):
+            tools.rename(os.path.join(lib64_path, "aws-c-event-stream"), os.path.join(lib_path, "aws-c-event-stream"))
+            tools.rename(os.path.join(lib64_path, "aws-c-common"), os.path.join(lib_path, "aws-c-common"))
+            tools.rename(os.path.join(lib64_path, "aws-checksums"), os.path.join(lib_path, "aws-checksums"))
+            tools.rename(os.path.join(lib64_path, "libaws-c-event-stream.a"), os.path.join(lib_path, "libaws-c-event-stream.a"))
+            tools.rename(os.path.join(lib64_path, "libaws-c-common.a"), os.path.join(lib_path, "libaws-c-common.a"))
+            tools.rename(os.path.join(lib64_path, "libaws-checksums.a"), os.path.join(lib_path, "libaws-checksums.a"))
+            for entry in os.listdir(os.path.join(lib64_path, "cmake")):
+                tools.rename(os.path.join(lib64_path, "cmake", entry), os.path.join(lib_path, "cmake", entry))
+            os.rmdir(os.path.join(lib64_path, "cmake"))
+            os.rmdir(lib64_path)
+
     def package_info(self):
         libs = list([])
 
         for sdk in self.sdks:
             if getattr(self.options, "build_" + sdk):
                 libs.append("aws-cpp-sdk-" + sdk)
-        libs.extend(["aws-cpp-sdk-core", "aws-c-event-stream", "aws-c-common", "aws-checksums"])
+        libs.extend(["aws-cpp-sdk-core"])
 
         if self.settings.os == "Windows":
             libs.append("winhttp")
