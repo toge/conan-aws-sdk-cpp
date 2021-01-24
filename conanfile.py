@@ -196,7 +196,7 @@ conan_basic_setup()
             if getattr(self.options, "build_" + sdk):
                 build_only.append(sdk)
 
-        # cmake.definitions["BUILD_DEPS"] = False
+        cmake.definitions["BUILD_DEPS"] = False
         cmake.definitions["BUILD_ONLY"] = ";".join(build_only)
         cmake.definitions["ENABLE_UNITY_BUILD"] = "ON"
         cmake.definitions["ENABLE_TESTING"] = "OFF"
