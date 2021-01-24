@@ -168,9 +168,7 @@ class AwssdkcppConan(ConanFile):
 
     def requirements(self):
         if self.settings.os != "Windows":
-            if self.settings.os != "Macos":
-                self.requires("openssl/1.1.1d")
-            self.requires("libcurl/7.66.0@bincrafters/stable")
+            self.requires("libcurl/[>= 7.66.0]")
         self.requires("aws-c-event-stream/[>= 0.1.5]")
 
     def source(self):
@@ -196,7 +194,7 @@ conan_basic_setup()
             if getattr(self.options, "build_" + sdk):
                 build_only.append(sdk)
 
-        # cmake.definitions["BUILD_DEPS"] = False
+        cmake.definitions["BUILD_DEPS"] = False
         cmake.definitions["BUILD_ONLY"] = ";".join(build_only)
         cmake.definitions["ENABLE_UNITY_BUILD"] = "ON"
         cmake.definitions["ENABLE_TESTING"] = "OFF"
@@ -212,20 +210,6 @@ conan_basic_setup()
     def package(self):
         cmake = CMake(self)
         cmake.install(build_dir=self.build_folder)
-
-        lib_path = os.path.join(self.package_folder, "lib")
-        lib64_path = os.path.join(self.package_folder, "lib64")
-        if os.path.exists(lib64_path):
-            tools.rename(os.path.join(lib64_path, "aws-c-event-stream"), os.path.join(lib_path, "aws-c-event-stream"))
-            tools.rename(os.path.join(lib64_path, "aws-c-common"), os.path.join(lib_path, "aws-c-common"))
-            tools.rename(os.path.join(lib64_path, "aws-checksums"), os.path.join(lib_path, "aws-checksums"))
-            tools.rename(os.path.join(lib64_path, "libaws-c-event-stream.a"), os.path.join(lib_path, "libaws-c-event-stream.a"))
-            tools.rename(os.path.join(lib64_path, "libaws-c-common.a"), os.path.join(lib_path, "libaws-c-common.a"))
-            tools.rename(os.path.join(lib64_path, "libaws-checksums.a"), os.path.join(lib_path, "libaws-checksums.a"))
-            for entry in os.listdir(os.path.join(lib64_path, "cmake")):
-                tools.rename(os.path.join(lib64_path, "cmake", entry), os.path.join(lib_path, "cmake", entry))
-            os.rmdir(os.path.join(lib64_path, "cmake"))
-            os.rmdir(lib64_path)
 
     def package_info(self):
         libs = list([])
@@ -244,7 +228,6 @@ conan_basic_setup()
             libs.append("ws2_32")
 
         if self.settings.os == "Linux":
-            libs.append("atomic")
             if self.settings.compiler == "clang":
                 libs.append("-stdlib=libstdc++")
 
