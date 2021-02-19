@@ -8,7 +8,7 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.8.141"
+    version = "1.8.145"
     license = "Apache 2.0"
     url = "https://github.com/toge/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
