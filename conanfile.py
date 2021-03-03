@@ -8,7 +8,6 @@ def merge_dicts_for_sdk(a, b):
 
 class AwssdkcppConan(ConanFile):
     name = "aws-sdk-cpp"
-    version = "1.8.151"
     license = "Apache 2.0"
     url = "https://github.com/toge/conan-aws-sdk-cpp"
     description = "Conan Package for aws-sdk-cpp"
@@ -288,9 +287,7 @@ class AwssdkcppConan(ConanFile):
         self.requires("aws-c-event-stream/[>= 0.1.5]")
 
     def source(self):
-        tools.download("https://github.com/aws/aws-sdk-cpp/archive/%s.tar.gz" % self.version, "aws-sdk-cpp.tar.gz")
-        tools.unzip("aws-sdk-cpp.tar.gz")
-        os.unlink("aws-sdk-cpp.tar.gz")
+        tools.get(**self.conan_data["sources"][self.version])
 
         # This small hack might be useful to guarantee proper /MT /MD linkage in MSVC
         # if the packaged projewct doesn't have variables to set it properly

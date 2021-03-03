@@ -1,0 +1,34 @@
+sources:
+  "1.8.154":
+    sha256: bd02eba393041e22614c371682620f79421a7852959e87b44d2ec647edf8e0cc
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.154.zip
+  "1.8.153":
+    sha256: bd02eba393041e22614c371682620f79421a7852959e87b44d2ec647edf8e0cc
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.153.zip
+  "1.8.152":
+    sha256: b1176a01d78013d065cf81e07b99c13882470952baeb99280d18c8b804d6348b
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.152.zip
+  "1.8.151":
+    sha256: 0ac956cec75b81cacab79c3472b0a2aa3fcbd9e563f24005372caff0812eb0b2
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.151.zip
+  "1.8.150":
+    sha256: 34cc86c90c71408439c67f428b5c0122e0314f680072312c55858506ed07ba76
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.150.zip
+  "1.8.149":
+    sha256: da9bee0d5cddce39876e4cddcdb8e027114e92fdc2d05131d1918189cf1efaa2
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.149.zip
+  "1.8.148":
+    sha256: 501bb4fc2f5da00e431ccd614cc0793a5ec1526bd9f5d575d22d0d1225ea0fc1
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.148.zip
+  "1.8.147":
+    sha256: 70a6b20c23736eac42fe32c58d939ed750f9c1122818d9f7b3961407f756fc55
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.147.zip
+  "1.8.146":
+    sha256: 13b4550b15fb439a8c305d89ac139358df6aa9a755804c64f3e2c1a10586ac7f
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.146.zip
+  "1.8.145":
+    sha256: 585633589f95a65aa1f9b7a83f645b408ac12ec0266319cf121ca27b03039e48
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.145.zip
+  "1.8.144":
+    sha256: ec8d55ccb801c447f93c3901eb23b9517c50026a12754456a8da85870b56dc9c
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.144.zip
