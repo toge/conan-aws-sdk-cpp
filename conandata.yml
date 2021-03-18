@@ -1,4 +1,7 @@
 sources:
+  "1.8.164":
+    sha256: 1a41a5bb6d7bd80d7dfbf38a3678c7ddaf9724169036b86cab9c6d382ee453c2
+    url: https://github.com/aws/aws-sdk-cpp/archive/1.8.164.zip
   "1.8.163":
     sha256: 5135ebc07e5603dcdb339df592a5f0dc886d1b8840d5a5513d4311344e29aca2
     url: https://github.com/aws/aws-sdk-cpp/archive/1.8.163.zip
