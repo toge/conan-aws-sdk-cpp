@@ -15,7 +15,7 @@ You can fill any id in `<REMOTE>`.
 ### Basic setup
 
 ```bash
-$ conan install aws-sdk-cpp/1.8.156@toge/stable
+$ conan install aws-sdk-cpp/1.8.184@toge/stable
 ```
 
 ### Project setup
@@ -26,7 +26,7 @@ from conans import ConanFile, CMake
 class AppConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
-    requires = "aws-sdk-cpp/1.8.129@toge/stable"
+    requires = "aws-sdk-cpp/1.8.184@toge/stable"
 
     default_options = "aws-sdk-cpp:shared=False", \
         "aws-sdk-cpp:build_s3=True"
@@ -56,7 +56,7 @@ Builds a binary package for recipe (conanfile.py) located in current dir.
 For more info please check [conan create](http://docs.conan.io/en/latest/reference/commands/creator/create.html#conan-create).
 
 ```bash
-$ conan create . 1.8.156@toge/stable --build=missing
+$ conan create . 1.8.184@toge/stable --build=missing
 ```
 
 ### Upload
@@ -65,7 +65,7 @@ Uploads a recipe and binary packages to a remote.
 For more info please check [conan upload](http://docs.conan.io/en/latest/reference/commands/creator/upload.html#conan-upload).
 
 ```bash
-$ conan upload aws-sdk-cpp/1.8.156@toge/stable --all -r <REMOTE> 
+$ conan upload aws-sdk-cpp/1.8.184@toge/stable --all -r <REMOTE> 
 ```
 
 Special thanks to @kmaragon for code base from scratch
